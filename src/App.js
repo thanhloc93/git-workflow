@@ -8,7 +8,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Vk iu 1
+          32132131
         </p>
         <a
           className="App-link"
