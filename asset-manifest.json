@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "//git-workflow/static/css/main.5f361e03.chunk.css",
-    "main.js": "//git-workflow/static/js/main.2ea06eee.chunk.js",
-    "main.js.map": "//git-workflow/static/js/main.2ea06eee.chunk.js.map",
-    "runtime-main.js": "//git-workflow/static/js/runtime-main.f0e5f90e.js",
-    "runtime-main.js.map": "//git-workflow/static/js/runtime-main.f0e5f90e.js.map",
-    "static/js/2.6b493f2d.chunk.js": "//git-workflow/static/js/2.6b493f2d.chunk.js",
-    "static/js/2.6b493f2d.chunk.js.map": "//git-workflow/static/js/2.6b493f2d.chunk.js.map",
-    "index.html": "//git-workflow/index.html",
-    "precache-manifest.c14ae60fbef9c308375891953d064f7b.js": "//git-workflow/precache-manifest.c14ae60fbef9c308375891953d064f7b.js",
-    "service-worker.js": "//git-workflow/service-worker.js",
-    "static/css/main.5f361e03.chunk.css.map": "//git-workflow/static/css/main.5f361e03.chunk.css.map",
-    "static/js/2.6b493f2d.chunk.js.LICENSE.txt": "//git-workflow/static/js/2.6b493f2d.chunk.js.LICENSE.txt",
-    "static/media/logo.svg": "//git-workflow/static/media/logo.5d5d9eef.svg"
+    "main.css": "/git-workflow/static/css/main.5f361e03.chunk.css",
+    "main.js": "/git-workflow/static/js/main.2140ae48.chunk.js",
+    "main.js.map": "/git-workflow/static/js/main.2140ae48.chunk.js.map",
+    "runtime-main.js": "/git-workflow/static/js/runtime-main.5fad8ac9.js",
+    "runtime-main.js.map": "/git-workflow/static/js/runtime-main.5fad8ac9.js.map",
+    "static/js/2.6b493f2d.chunk.js": "/git-workflow/static/js/2.6b493f2d.chunk.js",
+    "static/js/2.6b493f2d.chunk.js.map": "/git-workflow/static/js/2.6b493f2d.chunk.js.map",
+    "index.html": "/git-workflow/index.html",
+    "precache-manifest.2c06ea2e018a9f317bc715ce43d6b0aa.js": "/git-workflow/precache-manifest.2c06ea2e018a9f317bc715ce43d6b0aa.js",
+    "service-worker.js": "/git-workflow/service-worker.js",
+    "static/css/main.5f361e03.chunk.css.map": "/git-workflow/static/css/main.5f361e03.chunk.css.map",
+    "static/js/2.6b493f2d.chunk.js.LICENSE.txt": "/git-workflow/static/js/2.6b493f2d.chunk.js.LICENSE.txt",
+    "static/media/logo.svg": "/git-workflow/static/media/logo.5d5d9eef.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.f0e5f90e.js",
+    "static/js/runtime-main.5fad8ac9.js",
     "static/js/2.6b493f2d.chunk.js",
     "static/css/main.5f361e03.chunk.css",
-    "static/js/main.2ea06eee.chunk.js"
+    "static/js/main.2140ae48.chunk.js"
   ]
 }
