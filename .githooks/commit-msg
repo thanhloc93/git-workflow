@@ -1,13 +1,9 @@
 #!/bin/sh
-#
-# Automatically adds branch name and branch description to every commit message.
-#
-NAME=$(git branch | grep '*' | sed 's/* //') 
-DESCRIPTION=$(git config branch."$NAME".description)
 
-echo "$NAME"': '$(cat "$1") > "$1"
-if [ -n "$DESCRIPTION" ] 
-then
-   echo "" >> "$1"
-   echo $DESCRIPTION >> "$1"
-fi 
+if [ x = x${2} ]; then
+  BRANCH_NAME=$(git symbolic-ref --short HEAD)
+  STORY_NUMBER=$(echo $BRANCH_NAME | sed -n 's/.*-\([0-9]\)/\1/p')
+  if [ x != x${STORY_NUMBER} ]; then
+    sed -i.back "1s/$/\n\n[#$STORY_NUMBER]/" "$1"
+  fi
+fi
