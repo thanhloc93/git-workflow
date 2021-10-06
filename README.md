@@ -11,7 +11,6 @@ Run golang program
 go run main.go
 ```
 Testing
-
 ```bash
 go test
 ```
@@ -21,7 +20,6 @@ Build binary
 go build
 ```
 Install binary
-
 ```bash
 go install
 ```
