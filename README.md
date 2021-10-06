@@ -5,7 +5,7 @@
 Hello World for Golang
 
 ## Simple Command
-Run golang program
+Run golang program1
 ```bash
 go run main.go11
 ```
