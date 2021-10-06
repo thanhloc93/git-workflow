@@ -9,7 +9,7 @@ Run golang program
 ```bash
 go run main.go
 ```
-Testing
+Test
 ```bash
 go test
 Build binary
