@@ -13,7 +13,6 @@ go run main.go
 Testing
 ```bash
 go test
-```
 Build binary
 
 ```bash
