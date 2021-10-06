@@ -15,7 +15,6 @@ Testing
 ```bash
 go test
 ```
-
 Build binary
 
 ```bash
