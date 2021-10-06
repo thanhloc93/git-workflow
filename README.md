@@ -11,7 +11,7 @@ go run main.go11
 ```21
 Test
 ```bash
-go test
+go test11
 Build binary
 ```bash
 go build
