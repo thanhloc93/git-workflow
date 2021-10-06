@@ -13,7 +13,6 @@ Test
 ```bash
 go test
 Build binary
-
 ```bash
 go build
 ```
