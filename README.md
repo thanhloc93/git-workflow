@@ -23,5 +23,5 @@ go build
 Install binary
 
 ```bash
-go install 1
+go install 12
 ```
