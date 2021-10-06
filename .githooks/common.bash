@@ -38,9 +38,3 @@ check_pr_title() {
     fi
     return 0
 }
-prepare_commit_msg(){
-    message="$1"
-    branch_name="$2"
-    echo "message \"${message}\""
-    echo "branch_name \"${branch_name}\""
-}
