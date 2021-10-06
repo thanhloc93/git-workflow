@@ -7,7 +7,7 @@ Hello World for Golang
 ## Simple Command
 Run golang program
 ```bash
-go run main.go1
+go run main.go11
 ```
 Test
 ```bash
