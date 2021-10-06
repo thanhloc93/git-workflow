@@ -11,7 +11,6 @@ Run golang program
 ```bash
 go run main.go
 ```
-
 Testing
 
 ```bash
