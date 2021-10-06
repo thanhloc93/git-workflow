@@ -1,9 +1,55 @@
-#!/bin/sh
+#!/bin/bash
 
-if [ x = x${2} ]; then
-  BRANCH_NAME=$(git symbolic-ref --short HEAD)
-  STORY_NUMBER=$(echo $BRANCH_NAME | sed -n 's/.*-\([0-9]\)/\1/p')
-  if [ x != x${STORY_NUMBER} ]; then
-    sed -i.back "1s/$/\n\n[#$STORY_NUMBER]/" "$1"
-  fi
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+
+# get ticketid from branch name
+getticketid() {
+    # regex pattern to get ticket id (matching 2-6 letters, hypen, 1-5 numbers)
+    ticketidpattern="([A-Z]{2,6})-([0-9]{1,5})"
+    [[ $CURRENT_BRANCH =~ $ticketidpattern ]]
+    TICKET_ID="${BASH_REMATCH[0]}"
+
+    # check that the branch name has a ticket id that can be parsed
+    if [ -z "$TICKET_ID" ]
+    then
+        # if branch name starts with task, then ticketID is TASK
+        startwithtask="(^task|TASK)"
+        if [[ $CURRENT_BRANCH =~ $startwithtask ]]
+            then
+                TICKET_ID="TASK"
+            else
+                echo "Error: Your branch name ($CURRENT_BRANCH) does not have a ticket id in the correct format. Proceed commiting without ticket id."
+        fi
+    fi
+    echo "Ticket id: $TICKET_ID"
+}
+
+
+# don't do this on master branch
+if [ -z "$BRANCHES_TO_SKIP" ]; then
+  BRANCHES_TO_SKIP=(master HEAD)
 fi
+# get ticketid from branch name
+getticketid
+
+# Get the current branch name and check if it is excluded
+BRANCH_EXCLUDED=$(printf "%s\n" "${BRANCHES_TO_SKIP[@]}" | grep -c "^$CURRENT_BRANCH$")
+# Don't double-add prepending the ticket id if it's already in the commit
+TICKET_ID_IN_COMMIT=$(grep -c "\[$TICKET_ID\]" $1)
+
+echo "$TICKET_ID"
+
+if [ -n "$TICKET_ID" ] && ! [[ $BRANCH_EXCLUDED -eq 1 ]] && ! [[ $TICKET_ID_IN_COMMIT -ge 1 ]]; then 
+  sed -i.bak -e "1s/^/[$TICKET_ID] /" $1
+fi
+
+set -e
+
+root_dir=$(git rev-parse --show-toplevel)
+. ${root_dir}/.githooks/common.bash
+
+message_file_name=$1
+message=$(cat ${message_file_name})
+# prepare_commit_msg "${message}" "${branch_name}"
+check_message "${message}"
+
