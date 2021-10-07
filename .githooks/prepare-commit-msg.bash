@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# get ticketid from branch name
 regexp_message="(\b(LT|lt))-([0-9]{1,6})"
 get_id() {
     MESSAGE="$1"
