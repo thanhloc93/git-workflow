@@ -11,14 +11,7 @@ getticketid() {
     # check that the branch name has a ticket id that can be parsed
     if [ -z "$TICKET_ID" ]
     then
-        # if branch name starts with task, then ticketID is TASK
-        startwithtask="(^task|TASK)"
-        if [[ $CURRENT_BRANCH =~ $startwithtask ]]
-            then
-                TICKET_ID="TASK"
-            else
-                echo "Error: Your branch name ($CURRENT_BRANCH) does not have a ticket id in the correct format. Proceed commiting without ticket id."
-        fi
+       echo "Error: Your branch name ($CURRENT_BRANCH) does not have a ticket id in the correct format. Proceed commiting without ticket id."
     fi
     echo "Ticket id: $TICKET_ID"
 }
