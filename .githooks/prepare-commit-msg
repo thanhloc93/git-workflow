@@ -10,7 +10,6 @@ getticketid() {
     ticketidpattern="([A-Za-z]{2,6})-([0-9]{1,5})"
     [[ $MESSAGE =~ $ticketidpattern ]]
     TICKET_ID="${BASH_REMATCH[0]^^}"
-    
     # check that the branch name has a ticket id that can be parsed
     if [ -z "$TICKET_ID" ]
     then
@@ -19,6 +18,7 @@ getticketid() {
     fi
     echo "Ticket id: $TICKET_ID"
 }
+
 getticketid
 if [ -n "$TICKET_ID" ]; then 
     sed -i.bak -e "1s/^/[$TICKET_ID] /" $1
