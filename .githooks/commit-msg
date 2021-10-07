@@ -27,10 +27,7 @@ getticketid() {
 # get ticketid from branch name
 getticketid
 
-# Don't double-add prepending the ticket id if it's already in the commit
-TICKET_ID_IN_COMMIT=$(grep -c "\[$TICKET_ID\]" $1)
-
-if [ -n "$TICKET_ID" ] && ! [[ $TICKET_ID_IN_COMMIT -ge 1 ]]; then 
+if [ -n "$TICKET_ID" ]; then 
     sed -i.bak -e "1s/^/[$TICKET_ID] /" $1
 fi
 
