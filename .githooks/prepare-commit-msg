@@ -1,23 +1,26 @@
 #!/bin/bash
 
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+message_file_name=$1
+MESSAGE=$(cat ${message_file_name})
 # get ticketid from branch name
 getticketid() {
+    echo "Start check"
     # regex pattern to get ticket id (matching 2-6 letters, hypen, 4-5 numbers)
     ticketidpattern="([A-Za-z]{2,6})-([0-9]{1,5})"
-    [[ $CURRENT_BRANCH =~ $ticketidpattern ]]
+    [[ $MESSAGE =~ $ticketidpattern ]]
     TICKET_ID="${BASH_REMATCH[0]^^}"
     
     # check that the branch name has a ticket id that can be parsed
     if [ -z "$TICKET_ID" ]
     then
-       echo "Error: Your branch name ($CURRENT_BRANCH) does not have a ticket id in the correct format. Proceed commiting without ticket id."
+        [[ $CURRENT_BRANCH =~ $ticketidpattern ]]
+        TICKET_ID="${BASH_REMATCH[0]^^}"
     fi
     echo "Ticket id: $TICKET_ID"
 }
 
 getticketid
-
 if [ -n "$TICKET_ID" ]; then 
     sed -i.bak -e "1s/^/[$TICKET_ID] /" $1
 fi
