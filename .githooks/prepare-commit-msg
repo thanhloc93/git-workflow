@@ -6,15 +6,13 @@ MESSAGE=$(cat ${message_file_name})
 # get ticketid from branch name
 getticketid() {
     echo "Start check"
-    # regex pattern to get ticket id (matching 2-6 letters, hypen, 4-5 numbers)
-    ticketidpattern="(\bLT)-([0-9]{1,6})"
-    # ticketidpattern="(\b(lt|LT)-\d{1,6}\b)"
-    [[ $MESSAGE =~ $ticketidpattern ]]
+    regexp_message="(\bLT)-([0-9]{1,6})"
+    [[ $MESSAGE =~ $regexp_message ]]
     TICKET_ID="${BASH_REMATCH[0]^^}"
     # check that the branch name has a ticket id that can be parsed
     if [ -z "$TICKET_ID" ]
     then
-        [[ $CURRENT_BRANCH =~ $ticketidpattern ]]
+        [[ $CURRENT_BRANCH =~ $regexp_message ]]
         TICKET_ID="${BASH_REMATCH[0]^^}"
     fi
     echo "Ticket id: $TICKET_ID"
