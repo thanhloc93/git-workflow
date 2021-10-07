@@ -3,18 +3,16 @@
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 message_file_name=$1
 MESSAGE=$(cat ${message_file_name})
+
 # get ticketid from branch name
 get_ticket_id() {
-    echo "Start check"
     regexp_message="(\bLT)-([0-9]{1,6})"
     [[ $MESSAGE =~ $regexp_message ]]
     TICKET_ID_MESSAGE="${BASH_REMATCH[0]^^}"
-    # check that the branch name has a ticket id that can be parsed
     if [ -z "$TICKET_ID_MESSAGE" ]; then
         [[ $CURRENT_BRANCH =~ $regexp_message ]]
         TICKET_ID="${BASH_REMATCH[0]^^}"
     fi
-    echo "Ticket id: $TICKET_ID"
 }
 
 get_ticket_id
