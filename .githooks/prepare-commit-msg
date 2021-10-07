@@ -8,10 +8,12 @@ getticketid() {
     echo "Start check"
     regexp_message="(\bLT)-([0-9]{1,6})"
     [[ $MESSAGE =~ $regexp_message ]]
-    TICKET_ID="${BASH_REMATCH[0]^^}"
+    TICKET_ID_MESSAGE="${BASH_REMATCH[0]^^}"
     # check that the branch name has a ticket id that can be parsed
-    if [ -z "$TICKET_ID" ]
+    if [ -z "$TICKET_ID_MESSAGE" ]
+        echo "111111"
     then
+        echo "22222"
         [[ $CURRENT_BRANCH =~ $regexp_message ]]
         TICKET_ID="${BASH_REMATCH[0]^^}"
     fi
