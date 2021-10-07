@@ -3,25 +3,20 @@
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 message_file_name=$1
 MESSAGE=$(cat ${message_file_name})
-# get ticketid from branch name
 
-getticketid() {
-    echo "Start check"
-    # regex pattern to get ticket id (matching 2-6 letters, hypen, 4-5 numbers)
-    ticketidpattern="(b(lt|LT)-(\d{1,6}\b))"
-    # ticketidpattern="b(lt|LT)-(\d{1,6}\b)"
-    [[ $MESSAGE =~ $ticketidpattern ]]
-    TICKET_ID="${BASH_REMATCH[0]^^}"
-    
-    # check that the commit message has a ticket id that can be parsed
-    if [ -z "$TICKET_ID" ]
-    then
-        [[ $CURRENT_BRANCH =~ $ticketidpattern ]]
+# get ticketid from branch name
+get_ticket_id() {
+    regexp_message="(\b(LT|lt))-([0-9]{1,6})"
+    [[ $MESSAGE =~ $regexp_message ]]
+    TICKET_ID_MESSAGE="${BASH_REMATCH[0]^^}"
+    if [ -z "$TICKET_ID_MESSAGE" ]; then
+        [[ $CURRENT_BRANCH =~ $regexp_message ]]
         TICKET_ID="${BASH_REMATCH[0]^^}"
     fi
-    echo "Ticket id: $TICKET_ID"
 }
-getticketid
+
+get_ticket_id
+
 if [ -n "$TICKET_ID" ]; then 
     sed -i.bak -e "1s/^/[$TICKET_ID] /" $1
 fi
