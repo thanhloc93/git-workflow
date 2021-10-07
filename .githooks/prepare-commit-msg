@@ -6,7 +6,7 @@ MESSAGE=$(cat ${message_file_name})
 
 # get ticketid from branch name
 get_ticket_id() {
-    regexp_message="(\b(LT|lt))-(\d{1,6}\b)"
+    regexp_message="(\b(LT|lt))-([0-9]{1,6})"
     [[ $MESSAGE =~ $regexp_message ]]
     TICKET_ID_MESSAGE="${BASH_REMATCH[0]^^}"
     if [ -z "$TICKET_ID_MESSAGE" ]; then
