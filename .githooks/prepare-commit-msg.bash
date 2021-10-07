@@ -20,7 +20,8 @@ get_id() {
     if [ -n "$TICKET_ID" ]; then 
         sed -i.bak -e "1s/^/[$TICKET_ID] /" $3
     fi
-    echo $(cat ${3})
-
+    echo "INPUT BRANCH  ====> ${CURRENT_BRANCH}"
+    echo "INPUT MESSAGE ====> ${MESSAGE}"
+    echo "OUTPUT MESSAGE ====> $(cat ${3})"
 }
 
