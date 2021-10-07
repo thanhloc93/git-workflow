@@ -4,14 +4,16 @@ CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
 message_file_name=$1
 MESSAGE=$(cat ${message_file_name})
 # get ticketid from branch name
+
 getticketid() {
     echo "Start check"
     # regex pattern to get ticket id (matching 2-6 letters, hypen, 4-5 numbers)
-    ticketidpattern="([A-Za-z]{2,6})-([0-9]{1,5})"
+    ticketidpattern="(b(lt|LT)-(\d{1,6}\b))"
+    # ticketidpattern="b(lt|LT)-(\d{1,6}\b)"
     [[ $MESSAGE =~ $ticketidpattern ]]
     TICKET_ID="${BASH_REMATCH[0]^^}"
     
-    # check that the branch name has a ticket id that can be parsed
+    # check that the commit message has a ticket id that can be parsed
     if [ -z "$TICKET_ID" ]
     then
         [[ $CURRENT_BRANCH =~ $ticketidpattern ]]
