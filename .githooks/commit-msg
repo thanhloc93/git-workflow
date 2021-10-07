@@ -24,20 +24,13 @@ getticketid() {
     echo "Ticket id: $TICKET_ID"
 }
 
-
-# don't do this on master branch
-if [ -z "$BRANCHES_TO_SKIP" ]; then
-    BRANCHES_TO_SKIP=(master HEAD)
-fi
 # get ticketid from branch name
 getticketid
 
-# Get the current branch name and check if it is excluded
-BRANCH_EXCLUDED=$(printf "%s\n" "${BRANCHES_TO_SKIP[@]}" | grep -c "^$CURRENT_BRANCH$")
 # Don't double-add prepending the ticket id if it's already in the commit
 TICKET_ID_IN_COMMIT=$(grep -c "\[$TICKET_ID\]" $1)
 
-if [ -n "$TICKET_ID" ] && ! [[ $BRANCH_EXCLUDED -eq 1 ]] && ! [[ $TICKET_ID_IN_COMMIT -ge 1 ]]; then 
+if [ -n "$TICKET_ID" ] && ! [[ $TICKET_ID_IN_COMMIT -ge 1 ]]; then 
     sed -i.bak -e "1s/^/[$TICKET_ID] /" $1
 fi
 
