@@ -20,6 +20,7 @@ get_id() {
     if [ -n "$TICKET_ID" ]; then 
         sed -i.bak -e "1s/^/[$TICKET_ID] /" $3
     fi
+    echo $(cat ${3})
 
 }
 
