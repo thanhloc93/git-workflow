@@ -1,7 +1,6 @@
 #!/bin/bash
 
 CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
-
 # get ticketid from branch name
 getticketid() {
     # regex pattern to get ticket id (matching 2-6 letters, hypen, 4-5 numbers)
