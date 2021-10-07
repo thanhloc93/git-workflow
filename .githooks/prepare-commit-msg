@@ -22,7 +22,6 @@ getticketid() {
     fi
     echo "Ticket id: $TICKET_ID"
 }
-
 getticketid
 
 if [ -n "$TICKET_ID" ]; then 
